@@ -4,10 +4,5 @@ export class CreatePostDto {
   description: string;
   likes: number;
   url_image?: string;
-  comments?: [
-    {
-      user: string;
-      comment: string;
-    },
-  ];
+  comments?: Comment[];
 }

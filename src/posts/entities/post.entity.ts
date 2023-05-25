@@ -1,5 +1,8 @@
+/* eslint-disable */
+
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema as MongooseSchema } from 'mongoose';
+import { Comment } from '../../comments/entities/comment.entity';
 
 export type PostDocument = Post & Document;
 
@@ -20,8 +23,8 @@ export class Post {
   @Prop()
   url_image?: string;
 
-  @Prop()
-  comments?: [];
+  @Prop({ type: [{ user: String, comment: String }], required: false})
+  comments?: { user: string; comment: string }[];
 }
 
 export const PostSchema = SchemaFactory.createForClass(Post);

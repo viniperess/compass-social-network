@@ -10,6 +10,8 @@ import {
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { CreateCommentDto } from '../comments/dto/create-comment.dto';
+import { UpdateCommentDto } from '../comments/dto/update-comment.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -38,5 +40,43 @@ export class PostsController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.postsService.remove(id);
+  }
+
+  @Get(':id/comments')
+  getPostComments(@Param('id') postId: string) {
+    return this.postsService.getPostComments(postId);
+  }
+
+  @Get(':postId/comments/:commentId')
+  getComment(
+    @Param('postId') postId: string,
+    @Param('commentId') commentId: string,
+  ) {
+    return this.postsService.getComment(postId, commentId);
+  }
+
+  @Post(':postId/comments')
+  addComment(
+    @Param('postId') postId: string,
+    @Body() createCommentDto: CreateCommentDto,
+  ) {
+    return this.postsService.addComment(postId, createCommentDto);
+  }
+
+  @Delete(':postId/comments/:commentId')
+  removeComment(
+    @Param('postId') postId: string,
+    @Param('commentId') commentId: string,
+  ) {
+    return this.postsService.removeComment(postId, commentId);
+  }
+
+  @Put(':postId/comments/:commentId')
+  updateComment(
+    @Param('postId') postId: string,
+    @Param('commentId') commentId: string,
+    @Body('comment') updatedComment: string, // Apenas o campo "comment" é passado no corpo da requisição
+  ) {
+    return this.postsService.updateComment(postId, commentId, updatedComment);
   }
 }
