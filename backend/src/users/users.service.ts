@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
 import { Model } from 'mongoose';
+import { UsersModule } from './users.module';
 
 @Injectable()
 export class UsersService {
@@ -42,5 +43,12 @@ export class UsersService {
         _id: id,
       })
       .exec();
+  }
+  async findByUser(user: string) {
+    const foundUser = await this.userModel.findOne({ user });
+
+    console.log(foundUser); // Verifica o usuário retornado pela consulta
+
+    return foundUser;
   }
 }
