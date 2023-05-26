@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { UsersService } from 'src/users/users.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,10 @@ export class AuthService {
     console.log(userDocument); // Verifica o documento do usuário retornado pela consulta
 
     if (userDocument) {
-      const isPasswordValid = password === userDocument.password;
+      const isPasswordValid = await bcrypt.compare(
+        password,
+        userDocument.password,
+      );
 
       console.log(isPasswordValid); // Verifica o resultado da comparação de senha
 
