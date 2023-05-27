@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User, UserDocument } from './entities/user.entity';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { UsersModule } from './users.module';
 import * as bcrypt from 'bcrypt';
 
@@ -12,7 +12,10 @@ export class UsersService {
   constructor(@InjectModel(User.name) private userModel: Model<UserDocument>) {}
 
   async create(createUserDto: CreateUserDto) {
-    const user = new this.userModel(createUserDto);
+    const user = new this.userModel({
+      ...createUserDto,
+      _id: new mongoose.Types.ObjectId().toHexString(),
+    });
     user.password = await bcrypt.hash(createUserDto.password, 10);
     return user.save();
   }
@@ -27,9 +30,7 @@ export class UsersService {
 
   update(id: string, updateUserDto: UpdateUserDto) {
     return this.userModel.findByIdAndUpdate(
-      {
-        _id: id,
-      },
+      id,
       {
         $set: updateUserDto,
       },
@@ -48,6 +49,7 @@ export class UsersService {
   }
   async findByUser(user: string) {
     const foundUser = await this.userModel.findOne({ user });
+    console.log('IDdd');
 
     console.log(foundUser); // Verifica o usuário retornado pela consulta
 

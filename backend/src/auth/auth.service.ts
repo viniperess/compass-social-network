@@ -15,10 +15,11 @@ export class AuthService {
 
   async login(user: User): Promise<UserToken> {
     const payload: UserPayload = {
-      sub: user.user,
+      sub: user._id.toString(),
       email: user.email,
       name: user.name,
     };
+    console.log(user._id, 'AQUI');
 
     const jwtToken = this.jwtService.sign(payload);
 
@@ -30,7 +31,9 @@ export class AuthService {
   async validateUser(user: string, password: string) {
     const userDocument = await this.usersService.findByUser(user);
 
-    console.log(userDocument); // Verifica o documento do usuário retornado pela consulta
+    console.log('IDD 2');
+
+    console.log(userDocument._id.toString()); // Verifica o documento do usuário retornado pela consulta
 
     if (userDocument && userDocument.password) {
       const isPasswordValid = await bcrypt.compare(
@@ -47,6 +50,6 @@ export class AuthService {
         };
       }
     }
-    throw new Error('Email address or password provided is incorrect.');
+    throw new Error('User address or password provided is incorrect.');
   }
 }
