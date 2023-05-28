@@ -71,20 +71,45 @@ const Home: React.FC = () => {
 
   const createPost = async (e: any) => {
     e.preventDefault();
+    const currentDate = new Date();
+
+    // Obtém o dia, mês e ano
+    const day = currentDate.getDate();
+    const month = currentDate.getMonth() + 1; // Os meses são indexados a partir de zero, então adicionamos 1
+    const year = currentDate.getFullYear();
+    const formattedDate = `${year}-${month}-${day}`;
+
     const createPostBody = {
       user: user?.user,
       description: postDescription,
-      post_date: new Date().getFullYear().toString(),
+      post_date: formattedDate,
       likes: 0,
       url_image: "",
     };
+    try {
+      // Obter uma imagem de paisagem aleatória do Lorem Picsum
+      const response = await fetch("https://picsum.photos/600/400/?category=nature");
+      createPostBody.url_image = response.url; // Definir a URL da imagem no corpo do post
+    } catch (error) {
+      console.error("Erro ao obter a imagem:", error);
+    }
 
     const postCreated = await MakeRequest(PATH.POSTS, "POST", createPostBody);
 
     setPosts((prev) => [postCreated, ...prev]);
   };
 
-  const deletePost = async (e: any) => {};
+  const deletePost = async (postId: string) => {
+    try {
+      await MakeRequest(`${PATH.POSTS}/${postID}`, "DELETE");
+      console.log('Post excluído com sucesso');
+  
+      // Chame a função para atualizar a lista de posts após a exclusão
+      callPosts();
+    } catch (error) {
+      console.error('Erro ao excluir o post:', error);
+    }
+  };
 
   return (
     <div className="container-home">

@@ -23,7 +23,7 @@ const PostComponent: React.FC<Props> = (props) => {
   return (
     <div className="wrap-post" key={props.post._id}>
       <form className="deletePost" onSubmit={props.deletePost}>
-        <button type="submit">Apagar</button>
+      <button onClick={() => props.deletePost(props.post._id)}>Excluir</button>
       </form>
 
       <div className="user-of-the-post-container">
