@@ -16,7 +16,7 @@ export class PostsService {
   }
 
   findAll() {
-    return this.postModel.find();
+    return this.postModel.find().sort({ post_date: -1 });
   }
 
   findOne(id: string) {
