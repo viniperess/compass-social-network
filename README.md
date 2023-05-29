@@ -1,8 +1,8 @@
-##Compass Social Network
+# Compass Social Network
 
 Compass Social Network is a social networking application that allows users to register, login, and interact with other users through posts and comments. The application is developed using React and TypeScript on the frontend and NestJS on the backend.
 
-##Features
+## Features
 The application includes the following features:
 
 User registration with field validations and password encryption.
@@ -12,9 +12,9 @@ Addition and deletion of posts.
 Comments on existing posts.
 Dependencies
 
-##The application utilizes the following dependencies:
+## The application utilizes the following dependencies:
 
-##Frontend
+## Frontend
 react: JavaScript library for building user interfaces.
 react-dom: Package for manipulating the React DOM.
 react-router-dom: Library for routing in React.
@@ -22,7 +22,7 @@ react-scripts: Set of scripts for React development and building.
 typescript: Typed and compiled programming language for JavaScript.
 web-vitals: Library for measuring web performance metrics.
 
-##Backend
+## Backend
 bcrypt: Library for password encryption.
 class-transformer: Library for object transformation.
 class-validator: Library for class and object validation.
@@ -35,7 +35,7 @@ passport-local: Local authentication strategy for Passport.
 reflect-metadata: Library for runtime metadata support.
 rxjs: Library for reactive asynchronous programming.
 
-##Installation
+## Installation
 
 Follow the instructions below to set up and run the application:
 
@@ -47,7 +47,7 @@ Follow the instructions below to set up and run the application:
 6.Run the frontend and backend in separate terminals: cd frontend && npm start and cd backend && npm run start:dev
 7.Access the application in the browser: http://localhost:3000 for the frontend and http://localhost:3001 for the backend.
 
-##Configuration
+## Configuration
 
 Make sure to properly configure the environment variables in the .env file in the backend directory. The required variables may include the following:
 
@@ -55,11 +55,11 @@ MONGODB_URI: MongoDB database connection URL.
 JWT_SECRET: Secret key for JWT token generation and verification.
 Ensure to provide the correct values for these variables based on your local configuration.
 
-##Fetch API Integration
+## Fetch API Integration
 
 The frontend of the Compass Social Network application uses the Fetch API to communicate with the backend API. The Fetch API provides a modern and native way to make HTTP requests.
 
-##Contribution
+## Contribution
 
 If you wish to contribute to the Compass Social Network project, follow the steps below:
 
@@ -68,3 +68,5 @@ If you wish to contribute to the Compass Social Network project, follow the step
 3.Make the changes and commit to the branch.
 4.Push your branch with the changes: git push origin my-contribution.
 5.Open a pull request in the original repository.
+
+
