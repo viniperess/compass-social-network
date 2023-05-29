@@ -15,13 +15,17 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [error, setError] = useState("");
-  const [errorEmail, setErrorEmail] = useState("");
-  const [errorPassword, setErrorPassword] = useState("");
-
+  
   const emailRegex = /^\S+@\S+\.\S+$/;
-  const passwordRegex =
-  /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+  const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
   const navigate = useNavigate();
+  
+  const isValidDateOfBirth = (dateString: string) => {
+  const currentDate = new Date();
+   
+  const dateOfBirth = new Date(dateString);
+    return dateOfBirth < currentDate;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,11 +35,15 @@ const Register: React.FC = () => {
       return;
     }
     if (!emailRegex.test(email)) {
-      setErrorEmail("Email inválido!");
+      setError("Email inválido!");
+      return;
+    }
+    if (!isValidDateOfBirth(birth)) {
+      setError("Data de nascimento inválida!");
       return;
     }
     if(!passwordRegex.test(password)){
-      setErrorPassword("A senha deve conter minimo 8 caracter. Um numero, um letra maiuscula e um caracter especial");
+      setError("A senha deve conter minimo 8 caracter. Um numero, um letra maiuscula e um caracter especial");
       return;
     }
     if(password !== passwordTwo){
@@ -50,7 +58,7 @@ const Register: React.FC = () => {
           birthdate: birth,
           email,
           password,
-          profile_photo: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aG9tZW18ZW58MHx8MHx8fDI%3D&auto=format&fit=crop&w=500&q=60"
+          profile_photo: "https://static.wixstatic.com/media/dfb70b_ca25cd8fcdfb4b1bbaaea25eede396cb~mv2.png/v1/crop/x_0,y_12,w_384,h_359/fill/w_538,h_503,al_c,lg_1,q_85,usm_0.33_1.00_0.00,enc_auto/Perfil%20an%C3%B4nimo%20exemplo.png"
         });
 
         navigate("/Login")
@@ -82,7 +90,7 @@ const Register: React.FC = () => {
             name="name"
             id="name"
             value={name}
-            className="input_control"
+            className={!name ? "errors" : "input_control"}
             placeholder="Name"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setName(e.target.value)
@@ -109,11 +117,10 @@ const Register: React.FC = () => {
             className="input_control"
             placeholder="Email"
             onChange={
-              (e) => [setEmail(e.target.value), setErrorEmail(""), setError("")]
+              (e) => [setEmail(e.target.value), setError("")]
             }
           />
-          <label className="classError">{errorEmail}</label>
-          <Input
+           <Input
             type="date"
             name="birth"
             id="birth"
@@ -133,11 +140,10 @@ const Register: React.FC = () => {
             className="input_control"
             placeholder="Password"
             onChange={e =>
-              [setPassword(e.target.value), setErrorPassword(""), setError("")]
+              [setPassword(e.target.value), setError("")]
             }
           />
-          <label className="classError">{errorPassword}</label>
-
+         
           <Input
             type="password"
             name="passwordTwo"
@@ -149,7 +155,7 @@ const Register: React.FC = () => {
               setPasswordTwo(e.target.value)
             }
           />
-          <label className="classError">{error}</label>
+          <label className="classErrors">{error}</label>
 
           <button type="submit" className="btnRegister">
             Registrar-se

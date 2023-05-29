@@ -6,7 +6,7 @@
   font-family: "Poppins";
   font-style: normal;
   font-size: 16px;
-  color: white;
+  color: #ffffff;
   box-sizing: border-box;
 }
 
@@ -23,12 +23,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
 }
 
 .formRegister {
   width: 406px;
   height: 100vh;
-  
 }
 
 p > a {
@@ -43,6 +43,7 @@ p > a {
   font-weight: 500;
   font-size: 64px;
   line-height: 96px;
+  margin-top: 20px;
 }
 
 .boxFormRegister > p {
@@ -60,7 +61,7 @@ p > a {
   font-weight: 400;
   font-size: 32px;
   line-height: 48px;
-  /* margin-bottom: 20px; */
+  margin-bottom: 20px;
 }
 
 .log {
@@ -88,15 +89,13 @@ p > a {
   border: 1px solid white;
   border-radius: 46px;
   box-sizing: border-box;
-
   background-color: transparent;
   width: 406px;
   height: 42px;
   padding: 19px 24px;
-  margin-top: 15px;
-  /* outline: none; */
+  outline: none;
   display: flex;
-  margin-bottom: 16px;
+  margin-top: 16px;
 }
 
 input::placeholder {
@@ -104,7 +103,7 @@ input::placeholder {
 }
 
 .btnRegister  {
-  /* margin-top: 20px; */
+  margin-top: 20px;
   width: 406px;
   height: 42px;
   background: linear-gradient(180deg, #ad2d14 0%, #f42e07 100%);
@@ -159,32 +158,19 @@ button:hover {
   justify-content: center;
   background-position: 95%;
 }
-.input_control.error input {
-  border: 1px solid #e9b425;
+ .errors > input {
+  border-color: #e9b425;
   margin-bottom: 0px;
   margin-top: 0px;
 }
 
-.input_control.success input {
-  border: 1px solid green;
-  margin-bottom: 0px;
-  margin-top: 0px;
-}
-
-.input_control.success small {
-  visibility: visible;
+.classErrors {
+  font-size: 12px;
+  margin-bottom: 0;
+  align-items: center;
   justify-content: center;
   display: flex;
-  color: green;
-  font-size: 10px;
-}
-
-.input_control.error small {
-  visibility: visible;
-  justify-content: center;
-  display: flex;
-  color: #e9b425;
-  font-size: 10px;
+  margin-top: 5px;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
