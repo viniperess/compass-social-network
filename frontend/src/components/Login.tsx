@@ -8,6 +8,7 @@ import { InputErrors } from "../interfaces/Models";
 import { PATH } from "../Utils/Constants";
 import { MakeRequest } from "../Utils/MakeRequest";
 import { JWTtoken, decodeToken } from "../Utils/JWT";
+import { error } from "console";
 
 const Login: React.FC = () => {
 
@@ -41,13 +42,9 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-    // RESET ERRORS
-    insertNewError("user", "");
-    insertNewError("pass", "");
+
     insertNewError("serverError", "");
 
-    // CHECK INPUTS FOR ERRORS
-    checkInputs();
 
     // IF NO ERROR IS FOUND, SEND REQUEST TO THE SERVER
     if (!findErrors(errors)) {
@@ -64,7 +61,12 @@ const Login: React.FC = () => {
 
         if(isValidToken) nav("/")
       } else {
+        if(!user && !password){
+        insertNewError("serverError", "Preencha os campos");
+      } else{
         insertNewError("serverError", "Usuário ou senha inválidos");
+      
+      }
       }
     }
   };
@@ -75,14 +77,7 @@ const Login: React.FC = () => {
     if(typeof token === 'string') nav("/");
   })
 
-  const checkInputs = () => {
-    if (user.length === 0) {
-      insertNewError("user", "Digite o nome de usuário");
-    }
-    if (password.length === 0) {
-      insertNewError("pass", "Digite a senha");
-    }
-  };
+
 
   return (
     <div className='container'>
@@ -99,12 +94,13 @@ const Login: React.FC = () => {
             name='userLogin'
             id='userLogin'
             value={user}
+            className={errors.serverError && !user ? "errors" : "input_control"}
             placeholder='Username'
             onChange={(e) =>
               setUser(e.target.value)
             }
           />
-          {errors.user.length > 0 && <small className="error">{errors.user}</small>}
+          {/* {errors.user.length > 0 && <small className="error">{errors.user}</small>} */}
 
           <Input
             type='password'
@@ -112,11 +108,12 @@ const Login: React.FC = () => {
             id='passwordLogin'
             value={password}
             placeholder='Password'
+            className={errors.serverError && !password ? "errors" : "input_control"} 
             onChange={(e) =>
               setPassword(e.target.value)
             }
           />
-          {errors.pass.length > 0 && <small className="error">{errors.pass}</small>}
+          
           {errors.serverError.length > 0 && <small className="error">{errors.serverError}</small>}
 
           <button type='submit' className='btnLogin'>Logar-se</button>
