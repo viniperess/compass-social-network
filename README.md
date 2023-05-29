@@ -1,3 +1,6 @@
+![image](https://github.com/viniperess/compass-social-network/assets/107048343/93009c6c-fb0c-4baf-af86-0066fc4e64b2)
+
+
 # Compass Social Network
 
 Compass Social Network is a social networking application that allows users to register, login, and interact with other users through posts and comments. The application is developed using React and TypeScript on the frontend and NestJS on the backend.
@@ -9,7 +12,6 @@ The application includes the following features:
 - User login with JWT Token authentication.<br/>
 - Home page with a list of friends, posts, and interaction features.<br/>
 - Addition and deletion of posts.<br/>
-- Comments on existing posts.<br/>
 
 # Dependencies
 
