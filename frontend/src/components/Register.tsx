@@ -15,15 +15,15 @@ const Register: React.FC = () => {
   const [password, setPassword] = useState("");
   const [passwordTwo, setPasswordTwo] = useState("");
   const [error, setError] = useState("");
-  
+
   const emailRegex = /^\S+@\S+\.\S+$/;
   const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
   const navigate = useNavigate();
-  
+
   const isValidDateOfBirth = (dateString: string) => {
-  const currentDate = new Date();
-   
-  const dateOfBirth = new Date(dateString);
+    const currentDate = new Date();
+
+    const dateOfBirth = new Date(dateString);
     return dateOfBirth < currentDate;
   };
 
@@ -42,33 +42,33 @@ const Register: React.FC = () => {
       setError("Data de nascimento inválida!");
       return;
     }
-    if(!passwordRegex.test(password)){
-      setError("A senha deve conter minimo 8 caracter. Um numero, um letra maiuscula e um caracter especial");
+    if (!passwordRegex.test(password)) {
+      setError(
+        "A senha deve conter minimo 8 caracter. Um numero, um letra maiuscula e um caracter especial"
+      );
       return;
     }
-    if(password !== passwordTwo){
-      setError("As senhas não conferem!")
+    if (password !== passwordTwo) {
+      setError("As senhas não conferem!");
       return;
-    }else{
-      
-      
-      await MakeRequest(PATH.REGISTER, "POST", {
-          name,
-          user,
-          birthdate: birth,
-          email,
-          password,
-          profile_photo: "https://static.wixstatic.com/media/dfb70b_ca25cd8fcdfb4b1bbaaea25eede396cb~mv2.png/v1/crop/x_0,y_12,w_384,h_359/fill/w_538,h_503,al_c,lg_1,q_85,usm_0.33_1.00_0.00,enc_auto/Perfil%20an%C3%B4nimo%20exemplo.png"
-        });
+    } else {
+      const userSaved = await MakeRequest(PATH.REGISTER, "POST", {
+        name,
+        user,
+        birthdate: birth,
+        email,
+        password,
+        profile_photo:
+          "https://static.wixstatic.com/media/dfb70b_ca25cd8fcdfb4b1bbaaea25eede396cb~mv2.png/v1/crop/x_0,y_12,w_384,h_359/fill/w_538,h_503,al_c,lg_1,q_85,usm_0.33_1.00_0.00,enc_auto/Perfil%20an%C3%B4nimo%20exemplo.png",
+      });
 
-        navigate("/Login")
-
+      if (userSaved && !userSaved.message) {
+        setError("Usuário Registrado com sucesso");
+      } else {
+        setError("Usuário já existe");
       }
-
-    
+    }
   };
-
-
 
   return (
     <div className="container">
@@ -90,7 +90,7 @@ const Register: React.FC = () => {
             name="name"
             id="name"
             value={name}
-            className={!name ? "errors" : "input_control"}
+            className={error && !name ? "errors" : "input_control"}
             placeholder="Name"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setName(e.target.value)
@@ -102,7 +102,7 @@ const Register: React.FC = () => {
             name="user"
             id="user"
             value={user}
-            className="input_control"
+            className={error && !user ? "errors" : "input_control"}
             placeholder="Username"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setUser(e.target.value)
@@ -114,18 +114,16 @@ const Register: React.FC = () => {
             name="email"
             id="email"
             value={email}
-            className="input_control"
+            className={error && !email ? "errors" : "input_control"}
             placeholder="Email"
-            onChange={
-              (e) => [setEmail(e.target.value), setError("")]
-            }
+            onChange={(e) => [setEmail(e.target.value), setError("")]}
           />
-           <Input
+          <Input
             type="date"
             name="birth"
             id="birth"
             value={birth}
-            className="input_control"
+            className={error && !birth ? "errors" : "input_control"}
             placeholder="Birth"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setBirth(e.target.value)
@@ -137,19 +135,17 @@ const Register: React.FC = () => {
             name="password"
             id="password"
             value={password}
-            className="input_control"
+            className={error && !password ? "errors" : "input_control"}
             placeholder="Password"
-            onChange={e =>
-              [setPassword(e.target.value), setError("")]
-            }
+            onChange={(e) => [setPassword(e.target.value), setError("")]}
           />
-         
+
           <Input
             type="password"
             name="passwordTwo"
             id="passwordTwo"
             value={passwordTwo}
-            className="input_control"
+            className={error && !passwordTwo ? "errors" : "input_control"}
             placeholder="Password Confirm"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setPasswordTwo(e.target.value)

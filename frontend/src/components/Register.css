@@ -103,7 +103,7 @@ input::placeholder {
 }
 
 .btnRegister  {
-  margin-top: 20px;
+  margin-top: 10px;
   width: 406px;
   height: 42px;
   background: linear-gradient(180deg, #ad2d14 0%, #f42e07 100%);
@@ -161,7 +161,7 @@ button:hover {
  .errors > input {
   border-color: #e9b425;
   margin-bottom: 0px;
-  margin-top: 0px;
+  /* margin-top: 0px; */
 }
 
 .classErrors {

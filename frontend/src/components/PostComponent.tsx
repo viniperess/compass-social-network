@@ -20,18 +20,19 @@ interface Props {
 }
 
 const PostComponent: React.FC<Props> = (props) => {
-    const isCurrentUserPost = props.user?.user === props.post.user;
+const isCurrentUserPost = props.user?.user === props.post.user;
 
-    const handleDeletePost = () => {
-      props.deletePost(props.post._id);
-    };
+  const handleDeletePost = () => {
+    props.deletePost(props.post._id);
+  };
+
   return (
     <div className="wrap-post" key={props.post._id}>
-       {isCurrentUserPost && (
+      {isCurrentUserPost && (
         <form className="deletePost" onSubmit={handleDeletePost}>
           <button type="submit">x</button>
         </form>
-       )}
+      )}
       <div className="user-of-the-post-container">
         <div className="photo-container">
           <img
@@ -107,11 +108,15 @@ const PostComponent: React.FC<Props> = (props) => {
         {props.post.comments &&
           props.post.comments.map((comment) => (
             <div className="wrap-comment" key={comment._id}>
-              <div className="photo-containerComment"><img src={
-              props.users.find(
-                (userOfPost) => userOfPost.user === comment.user
-              )?.profile_photo
-            } alt="" />
+              <div className="photo-containerComment">
+                <img
+                  src={
+                    props.users.find(
+                      (userOfPost) => userOfPost.user === comment.user
+                    )?.profile_photo
+                  }
+                  alt=""
+                />
               </div>
               <p className="username">{comment.user}:</p>
               <p className="comment-text">{comment.comment}</p>
