@@ -64,7 +64,7 @@ The Compass Social Network backend provides the following API routes:
 
 * PUT /api/v1/users/:id: Update a user by ID.
 
-*DELETE /api/v1/users/:id: Delete a user by ID.
+* DELETE /api/v1/users/:id: Delete a user by ID.
 
 ### Posts
 
