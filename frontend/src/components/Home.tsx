@@ -88,7 +88,9 @@ const Home: React.FC = () => {
     };
     try {
       // Obter uma imagem de paisagem aleatória do Lorem Picsum
-      const response = await fetch("https://picsum.photos/600/400/?category=nature");
+      const response = await fetch(
+        "https://picsum.photos/600/400/?category=nature"
+      );
       createPostBody.url_image = response.url; // Definir a URL da imagem no corpo do post
     } catch (error) {
       console.error("Erro ao obter a imagem:", error);
@@ -102,13 +104,11 @@ const Home: React.FC = () => {
   const deletePost = async (postId: string) => {
     try {
       await MakeRequest(`${PATH.POSTS}/${postId}`, "DELETE");
-      console.log('Post excluído com sucesso');
-  
+      console.log("Post excluído com sucesso");
     } catch (error) {
-      console.error('Erro ao excluir o post:', error);
+      console.error("Erro ao excluir o post:", error);
     }
   };
-  
 
   return (
     <div className="container-home">
