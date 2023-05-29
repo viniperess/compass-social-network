@@ -40,13 +40,13 @@ The application includes the following features:
 
 Follow the instructions below to set up and run the application:
 
-1.Clone the project repository: git clone <https://github.com/viniperess/compass-social-network.git><br/>
-2.Navigate to the project directory: cd compass-social-network<br/>
-3.Install frontend dependencies: cd frontend && npm install<br/>
-4.Install backend dependencies: cd ../backend && npm install<br/>
-5.Create an .env file in the backend directory and define the required environment variables.<br/>
-6.Run the frontend and backend in separate terminals: cd frontend && npm start and cd backend && npm run start:dev<br/>
-7.Access the application in the browser: http://localhost:3000 for the frontend and http://localhost:3001 for the backend.<br/>
+1. Clone the project repository: git clone <https://github.com/viniperess/compass-social-network.git><br/>
+2. Navigate to the project directory: cd compass-social-network<br/>
+3. Install frontend dependencies: cd frontend && npm install<br/>
+4. Install backend dependencies: cd ../backend && npm install<br/>
+5. Create an .env file in the backend directory and define the required environment variables.<br/>
+6. Run the frontend and backend in separate terminals: cd frontend && npm start and cd backend && npm run start:dev<br/>
+7. Access the application in the browser: http://localhost:3000 for the frontend and http://localhost:3001 for the backend.<br/>
 
 ## Configuration
 
@@ -64,10 +64,10 @@ The frontend of the Compass Social Network application uses the Fetch API to com
 
 If you wish to contribute to the Compass Social Network project, follow the steps below:
 
-1.Fork the repository.<br/>
-2.Create a branch for your contribution: git checkout -b my-contribution.<br/>
-3.Make the changes and commit to the branch.<br/>
-4.Push your branch with the changes: git push origin my-contribution.<br/>
-5.Open a pull request in the original repository.<br/>
+1. Fork the repository.<br/>
+2. Create a branch for your contribution: git checkout -b my-contribution.<br/>
+3. Make the changes and commit to the branch.<br/>
+4. Push your branch with the changes: git push origin my-contribution.<br/>
+5. Open a pull request in the original repository.<br/>
 
 
