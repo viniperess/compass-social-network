@@ -104,8 +104,6 @@ const Home: React.FC = () => {
       await MakeRequest(`${PATH.POSTS}/${postId}`, "DELETE");
       console.log('Post excluído com sucesso');
   
-      // Chame a função para atualizar a lista de posts após a exclusão
-      callPosts();
     } catch (error) {
       console.error('Erro ao excluir o post:', error);
     }

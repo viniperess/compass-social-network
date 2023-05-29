@@ -99,20 +99,18 @@ const Login: React.FC = () => {
             name='userLogin'
             id='userLogin'
             value={user}
-            className='input_control'
             placeholder='Username'
             onChange={(e) =>
               setUser(e.target.value)
             }
           />
-          {errors.user.length > 0 && <small>{errors.user}</small>}
+          {errors.user.length > 0 && <small className="error">{errors.user}</small>}
 
           <Input
             type='password'
             name='passwordLogin'
             id='passwordLogin'
             value={password}
-            className='input_control'
             placeholder='Password'
             onChange={(e) =>
               setPassword(e.target.value)

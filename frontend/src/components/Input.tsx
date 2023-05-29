@@ -5,7 +5,7 @@ interface InputProps {
     placeholder: string;
     value: string;
     className?: string;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; // adicione esta linha
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void; 
   }
   
   const Input: React.FC<InputProps> = ({ id, name, type, placeholder,value, className, onChange }) => {
@@ -18,9 +18,8 @@ interface InputProps {
           value={value} 
           className="inputLogin"
           placeholder={placeholder}
-          onChange={onChange} // adicione esta linha
+          onChange={onChange} 
         />
-        <small></small>
       </div>
     );
   }
