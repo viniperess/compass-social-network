@@ -101,7 +101,7 @@ const Home: React.FC = () => {
 
   const deletePost = async (postId: string) => {
     try {
-      await MakeRequest(`${PATH.POSTS}/${postID}`, "DELETE");
+      await MakeRequest(`${PATH.POSTS}/${postId}`, "DELETE");
       console.log('Post excluído com sucesso');
   
       // Chame a função para atualizar a lista de posts após a exclusão
@@ -110,6 +110,7 @@ const Home: React.FC = () => {
       console.error('Erro ao excluir o post:', error);
     }
   };
+  
 
   return (
     <div className="container-home">
