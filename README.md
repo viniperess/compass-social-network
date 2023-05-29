@@ -50,6 +50,50 @@ Follow the instructions below to set up and run the application:
 6. Run the frontend and backend in separate terminals: cd frontend && npm start and cd backend && npm run start:dev<br/>
 7. Access the application in the browser: http://localhost:3000 for the frontend and http://localhost:3001 for the backend.<br/>
 
+## API Routes
+
+The Compass Social Network backend provides the following API routes:
+
+### Users
+
+* GET /api/v1/users: Get a list of all users.
+
+* GET /api/v1/users/:id: Get a specific user by ID.
+
+* POST /api/v1/users: Create a new user.
+
+* PUT /api/v1/users/:id: Update a user by ID.
+
+*DELETE /api/v1/users/:id: Delete a user by ID.
+
+### Posts
+
+* GET /api/v1/posts: Get a list of all posts.
+
+* GET /api/v1/posts/:id: Get a specific post by ID.
+
+* POST /api/v1/posts: Create a new post.
+
+* PUT /api/v1/posts/:id: Update a post by ID.
+
+* DELETE /api/v1/posts/:id: Delete a post by ID.
+
+### Comments
+
+* GET /api/v1/posts/:postId/comments: Get all comments for a specific post.
+
+* GET /api/v1/posts/:postId/comments/:commentId: Get a specific comment for a post.
+
+* POST /api/v1/posts/:postId/comments: Add a new comment to a post.
+
+* PUT /api/v1/posts/:postId/comments/:commentId: Update a comment for a post.
+
+* DELETE /api/v1/posts/:postId/comments/:commentId: Delete a comment for a post.
+
+Please note that you need to replace :id, :postId, and :commentId with the actual IDs when making requests to these routes.
+
+Feel free to customize and expand this list based on your specific API routes and their functionalities.
+
 ## Configuration
 
 Make sure to properly configure the environment variables in the .env file in the backend directory. The required variables may include the following:
